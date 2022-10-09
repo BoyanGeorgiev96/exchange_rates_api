@@ -1,24 +1,79 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Ruby version - 3.1.0
 
-Things you may want to cover:
+### Rails version - 7.0.4
 
-* Ruby version
+## Project setup
 
-* System dependencies
+Clone the repository and install the gems:
 
-* Configuration
+```
+git clone https://github.com/BoyanGeorgiev96/exchange_rates_api.git
+cd exchange_rates_api
+bundle
+```
 
-* Database creation
+## Database initialization 
 
-* Database initialization
+`rails db:setup`
 
-* How to run the test suite
+## API Usage
 
-* Services (job queues, cache servers, search engines, etc.)
+Run the server:
+`rails s`
 
-* Deployment instructions
+The following requests can be executed via tools such as [Postman](https://www.postman.com).
 
-* ...
+### Login request
+
+`POST http://127.0.0.1:3000/login with body email: "a@a.com", password: "121212"`
+
+Expected response - token used for other queries and expiration datetime
+
+### Fetch local data for a range of dates
+
+`GET http://127.0.0.1:3000/average_rate/usd/2021-09-09/2021-09-10 with header { 'Authorization': "Bearer #{token}" }`
+
+Expected response - 1.5000
+
+### Fetch local data for a specific day
+
+`GET http://127.0.0.1:3000/average_rate/usd/2022-10-07 with header { 'Authorization': "Bearer #{token}" }`
+
+Expected response - 4.9588
+
+### Fetch external API data for a range of dates
+
+`GET http://127.0.0.1:3000/average_rate/usd/2022-09-09/2022-09-15 with header { 'Authorization': "Bearer #{token}" }`
+
+Expected response - 4.6724
+
+### Fetch external API data for a specific day
+
+`GET http://127.0.0.1:3000/average_rate/usd/2022-10-05 with header { 'Authorization': "Bearer #{token}" }`
+
+Expected response - 4.8380
+
+
+## Run Test suite
+
+A minimal test seeds are provided to showcase the usage of the exact queries above
+
+Navigate to the project root folder and run:
+
+`rspec`
+
+## Future development
+
+* Average exchange rate for the last n days
+
+* Average exchange rate for the last n records (Seems like the external API does not have values for weekends)
+
+* Buy/sell rates
+
+* Average/buy/sell rates for multiple currencies
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/BoyanGeorgiev96/exchange_rates_api.
