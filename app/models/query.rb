@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'net/http'
+
 # External API calls with error reporting
 class Query
   attr_accessor :response
