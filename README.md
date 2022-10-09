@@ -58,7 +58,7 @@ Expected response - 4.8380
 
 ## Run Test suite
 
-A minimal test seeds are provided to showcase the usage of the exact queries above
+A minimal test seed is provided to showcase the usage of the exact queries above
 
 Navigate to the project root folder and run:
 
