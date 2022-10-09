@@ -1,6 +1,8 @@
-Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+# frozen_string_literal: true
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+Rails.application.routes.draw do
+  post '/login', to: 'authentication#login'
+  get 'exchange_rates', to: 'exchange_rates#fetch_todays_rates'
+  get 'average_rate/:currency/:start/:end', to: 'exchange_rates#fetch_range_data'
+  get 'average_rate/:currency/:date', to: 'exchange_rates#fetch_day_data'
 end
