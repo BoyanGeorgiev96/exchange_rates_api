@@ -18,6 +18,22 @@ bundle
 
 `rails db:setup`
 
+## Daily rate fetching
+
+In the root directory run (assuming a UNIX system):
+
+`whenever --update-crontab`
+
+This adds a cron task to be executed daily. The cron task calls the DailyExchangeRates.fetch_todays_rates method.
+
+You can check if the task has been added successfully by checking the output of:
+
+`crontab -l`
+
+It should contain something like the following:
+
+`0 0 * * * /bin/bash -l -c 'cd /home/user/currency_exchange_rate && bundle exec bin/rails runner -e development '\''DailyExchangeRates.fetch_todays_rates'\'''`
+
 ## API Usage
 
 Run the server:
